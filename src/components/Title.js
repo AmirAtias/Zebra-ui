@@ -2,10 +2,10 @@
 import { jsx, css } from "@emotion/core";
 function Title(props) {
   const titleText = css({
-    "font-size": "6vw",
-    "font-weight": "700",
+    fontSize: "6vw",
+    fontWeight: "700",
     color: "#fff",
-    "line-height": "1"
+    lineHeight: "1",
   });
 
   return <h1 css={titleText}>{props.title}</h1>;

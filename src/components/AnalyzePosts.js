@@ -1,21 +1,24 @@
 /* eslint-disable react/jsx-key */
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import API from "../utils/API";
 import ThemeContext from "./ThemeContext";
 import UserPosts from "./UserPosts";
-import { Input, Button, Container } from "semantic-ui-react";
-
+import { Input, Button } from "semantic-ui-react";
+import Loader from "./Loader";
 const AnalyzePosts = (props) => {
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("");
   const [posts, setPosts] = useState([]);
+  const [Loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [pos, setPosition] = useContext(ThemeContext);
 
   useEffect(() => {
     async function getAllPosts() {
       try {
+        setLoading(true);
         let response;
         if (filter === "") {
           response = await API.get("/socialMedia/allposts", {
@@ -43,6 +46,7 @@ const AnalyzePosts = (props) => {
           window.alert("users not found");
           setFilter("");
         }
+        setLoading(false);
       } catch (e) {
         window.alert(`😱 Axios request failed: ${e}`);
       }
@@ -107,7 +111,16 @@ const AnalyzePosts = (props) => {
           onClick={saveResults}
         />
       </div>
-      <UserPosts posts={posts} />
+
+      {!Loading ? (
+        <div>
+          <UserPosts posts={posts} />
+        </div>
+      ) : (
+        <div>
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

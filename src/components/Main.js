@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./Home";
-import Ch from "./CrawlingRequest";
+import CrawlingRequest from "./CrawlingRequest";
 import AllCrawlingResults from "./AllCrawlingResults";
 const Main = () => {
   return (
@@ -11,13 +11,14 @@ const Main = () => {
         <Home />
       </Route>
       <Route path="/aboutme"></Route>
-      <Route path="/contact">
-        <Ch />
+      <Route path="/CrawlingRequest">
+        <CrawlingRequest />
       </Route>
       <Route path="/projects"></Route>
-      <Route path="/resume">
+      <Route path="/AnalyzePosts">
         <AllCrawlingResults />
       </Route>
+      <Route render={() => <Redirect to="/" />} />
     </Switch>
   );
 };

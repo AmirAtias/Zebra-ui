@@ -11,7 +11,7 @@ const AllCrawlingResults = () => {
   const [displayUserPosts, setDisplayUserPosts] = useState("false");
   const [user, setUser] = useState("");
 
-  const displayPosts = useCallback(user => {
+  const displayPosts = useCallback((user) => {
     console.log(user);
     setDisplayUserPosts("true");
     setUser(user);
@@ -21,19 +21,19 @@ const AllCrawlingResults = () => {
     "font-family": "'Baloo 2', cursive",
     "font-size": "1.7vw",
     display: "flex",
-    marginTop: "7px"
+    marginTop: "7px",
   });
 
   const containerCss = css({
     display: "flex",
     "flex-flow": "column wrap",
-    "align-items": "center"
+    "align-items": "center",
   });
   const ComboCss = css({
     display: "flex",
     "flex-flow": "row wrap",
     "align-items": "center",
-    paddingTop: "18px"
+    paddingTop: "18px",
   });
 
   return (
@@ -41,20 +41,22 @@ const AllCrawlingResults = () => {
       {displayUserPosts === "false" ? (
         <div>
           <Title title="Crawling Results" />
-          <div css={ComboCss}>
-            <label css={labelForm} htmlFor="socialmedia">
-              Social Network:
-            </label>
-            <select
-              style={{ width: "200px", marginLeft: "0px" }}
-              name="SocialMedia"
-              onChange={e => setSocialMedia(e.target.value)}
-            >
-              <option value="Facebook">Facebook</option>
-              <option value="WorldExplorer">WorldExplorer</option>
-            </select>
-          </div>
-          <AllUsers socialMedia={SocialMedia} displayPosts={displayPosts} />
+          <Container>
+            <div css={ComboCss}>
+              <label css={labelForm} htmlFor="socialmedia">
+                Social Network:
+              </label>
+              <select
+                style={{ width: "200px", marginLeft: "0px" }}
+                name="SocialMedia"
+                onChange={(e) => setSocialMedia(e.target.value)}
+              >
+                <option value="Facebook">Facebook</option>
+                <option value="WorldExplorer">WorldExplorer</option>
+              </select>
+            </div>
+            <AllUsers socialMedia={SocialMedia} displayPosts={displayPosts} />
+          </Container>
         </div>
       ) : (
         <div>

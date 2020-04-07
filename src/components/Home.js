@@ -2,24 +2,30 @@
 import { css, jsx } from "@emotion/core";
 import { Button, Container } from "react-bootstrap";
 import Title from "./Title";
+import { useHistory } from "react-router-dom";
 const Home = () => {
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/CrawlingRequest");
+  }
   const pageContent = css({
-    "font-size": "2vw",
-    "font-weight": "200",
+    fontSize: "2vw",
+    fontWeight: "200",
     color: "#fff",
-    "line-height": "1",
-    "margin-top": "40px",
+    lineHeight: "1",
+    marginTop: "40px",
     marginInline: "20px",
     display: "flex",
-    "flex-flow": "column wrap",
-    "align-items": "center",
-    "justify-content": "center",
-    margin: "3%"
+    flexFlow: "column wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "3%",
   });
   const containerCss = css({
     display: "flex",
-    "flex-flow": "column wrap",
-    "align-items": "center"
+    flexFlow: "column wrap",
+    alignItems: "center",
   });
   return (
     <Container css={containerCss}>
@@ -29,8 +35,8 @@ const Home = () => {
           Data Crawling Services for Social Media
         </h2>
 
-        <Button variant="primary" size="lg">
-          Start crawling now{" "}
+        <Button variant="primary" size="lg" onClick={handleClick}>
+          Start crawling now
         </Button>
       </div>
     </Container>
