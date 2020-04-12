@@ -3,15 +3,17 @@
 import { jsx, css } from "@emotion/core";
 import { useState, useEffect, useContext } from "react";
 import API from "../utils/API";
-import ThemeContext from "./ThemeContext";
+import { ThemeContext } from "./AppContext";
 import UserPosts from "./UserPosts";
-import { Input, Button } from "semantic-ui-react";
+import { Input, Button, Container } from "semantic-ui-react";
 import Loader from "./Loader";
+
 const AnalyzePosts = (props) => {
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("");
   const [posts, setPosts] = useState([]);
   const [Loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [pos, setPosition] = useContext(ThemeContext);
 
@@ -43,12 +45,17 @@ const AnalyzePosts = (props) => {
             setPosition("sticky");
           } else setPosition("fixed");
         } else {
-          window.alert("users not found");
+          window.alert(`don't  find any post which contain the word ${filter}`);
           setFilter("");
         }
         setLoading(false);
       } catch (e) {
-        window.alert(`😱 Axios request failed: ${e}`);
+        setError(e.message);
+        if (e.message === "Request failed with status code 401") {
+          window.location.replace("/login");
+        } else {
+          window.alert(`😱 Axios request failed: ${e}`);
+        }
       }
     }
     getAllPosts();
@@ -64,14 +71,25 @@ const AnalyzePosts = (props) => {
 
       window.location.replace("/");
     } catch (e) {
-      window.alert(`😱 Axios request failed: ${e}`);
+      setError(e.message);
+      if (e.message === "Request failed with status code 401") {
+        window.location.replace("/login");
+      } else {
+        window.alert(`😱 Axios request failed: ${e}`);
+      }
     }
   }
   const element = css({
     display: "inline-block",
     paddingRight: "5px",
   });
-
+  if (error) {
+    return (
+      <Container>
+        <span>{error}</span>
+      </Container>
+    );
+  }
   return (
     <div>
       <h2>
@@ -86,6 +104,7 @@ const AnalyzePosts = (props) => {
           placeholder="enter a filter"
           onBlur={(e) => {
             setInput(e.target.value);
+            e.target.value = "";
           }}
         ></Input>
         <Button
