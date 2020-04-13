@@ -11,7 +11,7 @@ import Loader from "./Loader";
 const AnalyzePosts = (props) => {
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState({});
   const [Loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   // eslint-disable-next-line no-unused-vars
@@ -59,6 +59,7 @@ const AnalyzePosts = (props) => {
       }
     }
     getAllPosts();
+    // eslint-disable-next-line
   }, [filter]);
 
   async function saveResults() {

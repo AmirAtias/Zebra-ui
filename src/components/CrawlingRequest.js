@@ -24,42 +24,42 @@ const CrawlingRequest = () => {
 
   const formCss = css({
     display: "flex",
-    "flex-flow": "column wrap",
-    "align-items": "center",
-    "justify-content": "center",
-    "padding-top": "0px"
+    flexFlow: "column wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "0px",
   });
   const labelForm = css({
     width: "300px",
-    "font-family": "'Baloo 2', cursive",
-    "font-size": "2vw",
-    margin: "0px"
+    fontFamily: "'Baloo 2', cursive",
+    fontSize: "2vw",
+    margin: "0px",
   });
   const comboLabel = css({
     width: "350px",
-    "font-family": "'Baloo 2', cursive",
-    "font-size": "2vw"
+    fontFamily: "'Baloo 2', cursive",
+    fontSize: "2vw",
   });
   const inputCss = css({
     width: "100%",
     padding: "8px 20px",
     margin: "8px 0",
     border: "1px solid #ccc",
-    "border-radius": "2px"
+    borderRadius: "2px",
   });
   const comboCss = css({
     width: "100%",
     padding: "12px 20px",
     margin: "5px 0",
     border: "none",
-    "border-radius": "4px",
-    "background-color": "#f1f1f1",
-    "margin-bottom": "20px"
+    borderRadius: "4px",
+    backgroundColor: "#f1f1f1",
+    marginBottom: "20px",
   });
   const containerCss = css({
     display: "flex",
-    "flex-flow": "column wrap",
-    "align-items": "center"
+    flexFlow: "column wrap",
+    alignItems: "center",
   });
   return (
     <Container css={containerCss}>

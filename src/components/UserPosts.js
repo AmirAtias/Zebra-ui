@@ -4,18 +4,18 @@ import { jsx, css } from "@emotion/core";
 
 import { Comment, Header, Container } from "semantic-ui-react";
 
-const UserPosts = props => {
+const UserPosts = (props) => {
   const containerCss = css({
-    backgroundColor: "white"
+    backgroundColor: "white",
   });
   const comments = css({
-    paddingLeft: "10%"
+    paddingLeft: "10%",
   });
   return (
     <div>
       <Comment.Group css={containerCss}>
-        {props.posts.map(post => (
-          <div>
+        {props.posts.map((post, i) => (
+          <div key={i}>
             {post.postContent !== "" ? (
               <div>
                 <Comment>
@@ -34,16 +34,18 @@ const UserPosts = props => {
                     Comments:
                   </Header>
                 )}
-                {post.comments.map(comment => (
-                  <Container css={comments}>
+                {post.comments.map((comment) => (
+                  <Container css={comments} key={comment.commentContent}>
                     <Comment>
                       <Comment.Avatar src="https://www.kids-world.com/images/MK436.jpg" />
                       <Comment.Content>
-                        <Comment.Author as="a">Matt</Comment.Author>
+                        <Comment.Author as="a">
+                          {comment.commentHeader}
+                        </Comment.Author>
                         <Comment.Metadata>
-                          <div>Today at 5:42PM</div>
+                          <div>{comment.commentTime}</div>
                         </Comment.Metadata>
-                        <Comment.Text>{comment}</Comment.Text>
+                        <Comment.Text>{comment.commentContent}</Comment.Text>
                       </Comment.Content>
                       <hr />
                     </Comment>

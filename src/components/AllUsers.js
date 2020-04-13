@@ -11,8 +11,8 @@ function AllUsers(props) {
       try {
         const response = await API.get("/socialMedia/displayAllUsers", {
           params: {
-            socialMedia: props.socialMedia
-          }
+            socialMedia: props.socialMedia,
+          },
         });
         console.log("👉 Returned data:", response.data);
         if (response.data.users.length > 0) {
@@ -36,23 +36,23 @@ function AllUsers(props) {
 
   const labelForm = css({
     width: "150px",
-    "font-family": "'Baloo 2', cursive",
-    "font-size": "1.2vw",
+    fontFamily: "'Baloo 2', cursive",
+    fontSize: "1.2vw",
     display: "flex",
-    marginTop: "7px"
+    marginTop: "7px",
   });
   const containerCss = css({
     display: "flex",
-    "flex-flow": "column wrap",
-    "align-items": "center",
-    marginLeft: "-50px"
+    flexFlow: "column wrap",
+    alignItems: "center",
+    marginLeft: "-50px",
   });
   return (
     <div>
       <h2>all crawling results of {props.socialMedia}:</h2>
       <Container css={containerCss}>
         <ListGroup>
-          {users.map(user => (
+          {users.map((user) => (
             <Button
               variant="outline-info"
               css={labelForm}

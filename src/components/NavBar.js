@@ -19,7 +19,7 @@ const NavBar = () => {
         window.alert(`😱 Axios request failed: ${e}`);
       }
       return () => clearInterval(interval);
-    }, 15000);
+    }, 1500000);
   }, []);
 
   async function logout() {

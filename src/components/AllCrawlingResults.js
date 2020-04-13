@@ -9,7 +9,7 @@ import AnalyzePosts from "./AnalyzePosts";
 import API from "../utils/API";
 
 const AllCrawlingResults = () => {
-  const [SocialMedia, setSocialMedia] = useState("Facebook");
+  const [SocialMedia, setSocialMedia] = useState("humhub");
   const [displayUserPosts, setDisplayUserPosts] = useState("false");
   const [user, setUser] = useState("");
   const [authSucess, setAuthSucess] = useState(false);
@@ -37,21 +37,21 @@ const AllCrawlingResults = () => {
   }, []);
   const labelForm = css({
     width: "200px",
-    "font-family": "'Baloo 2', cursive",
-    "font-size": "1.7vw",
+    fontFamily: "'Baloo 2', cursive",
+    fontSize: "1.7vw",
     display: "flex",
     marginTop: "7px",
   });
 
   const containerCss = css({
     display: "flex",
-    "flex-flow": "column wrap",
-    "align-items": "center",
+    flexFlow: "column wrap",
+    alignItems: "center",
   });
   const ComboCss = css({
     display: "flex",
-    "flex-flow": "row wrap",
-    "align-items": "center",
+    flexFlow: "row wrap",
+    alignItems: "center",
     paddingTop: "18px",
   });
   if (!authSucess) {
@@ -72,7 +72,7 @@ const AllCrawlingResults = () => {
                   name="SocialMedia"
                   onChange={(e) => setSocialMedia(e.target.value)}
                 >
-                  <option value="Facebook">Facebook</option>
+                  <option value="humhub">humhub</option>
                   <option value="WorldExplorer">WorldExplorer</option>
                 </select>
               </div>
