@@ -1,7 +1,7 @@
-import API from "../utils/API";
+import API from "../../utils/API";
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "../mainComponents/Loader";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { UserNameContext } from "./AppContext";
+import { UserNameContext } from "../mainComponents/AppContext";
 
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,17 +29,27 @@ const SignIn = () => {
     API.post("/users/signin", {
       email: signInEmail,
       password: signInPassword,
-    }).then((res) => {
-      console.log("json", res.data);
-      if (res.data.success) {
-        console.log(res.data.message);
-        setUserName(res.data.userName);
-        history.push("/");
-      } else {
-        setSignInError(res.data.message);
-        setIsLoading(false);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("json", res.data);
+          if (res.data.success) {
+            console.log(res.data.message);
+            setUserName(res.data.userName);
+            history.push("/");
+          } else {
+            setSignInError(res.data.message);
+            setIsLoading(false);
+          }
+        } else {
+          const error = new Error(res.data.message);
+          throw error;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.replace("/");
+      });
   }
   const useStyles = makeStyles((theme) => ({
     paper: {

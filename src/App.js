@@ -1,10 +1,13 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/NavBar";
-import Main from "./components/Main";
+import NavBar from "./components/mainComponents/NavBar";
+import Main from "./components/mainComponents/Main";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeContext, UserNameContext } from "./components/AppContext";
+import {
+  ThemeContext,
+  UserNameContext,
+} from "./components/mainComponents/AppContext";
 import { useState, useEffect } from "react";
 import API from "./utils/API";
 function App() {

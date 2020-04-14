@@ -1,6 +1,6 @@
-import API from "../utils/API";
+import API from "../../utils/API";
 import React, { useState } from "react";
-import Loader from "./Loader";
+import Loader from "../mainComponents/Loader";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -25,20 +25,30 @@ const SignUp = () => {
       password: signUpPassword,
       firstName: signUpFirstName,
       lastName: signUpLastName,
-    }).then((res) => {
-      console.log("json", res.data);
-      if (res.data.success) {
-        setSignUpMsg(res.data.message);
-        setIsLoading(false);
-        setSignUpEmail("");
-        setSignUpFirstName("");
-        setSignUpLastName("");
-        setSignUpPassword("");
-      } else {
-        setSignUpMsg(res.data.message);
-        setIsLoading(false);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("json", res.data);
+          if (res.data.success) {
+            setSignUpMsg(res.data.message);
+            setIsLoading(false);
+            setSignUpEmail("");
+            setSignUpFirstName("");
+            setSignUpLastName("");
+            setSignUpPassword("");
+          } else {
+            setSignUpMsg(res.data.message);
+            setIsLoading(false);
+          }
+        } else {
+          const error = new Error(res.data.message);
+          throw error;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.replace("/");
+      });
   }
 
   const useStyles = makeStyles((theme) => ({

@@ -1,38 +1,42 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { useState, useEffect, memo } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 import { Button, Container, ListGroup } from "react-bootstrap";
+import Loader from "../mainComponents/Loader";
 function AllUsers(props) {
   const [users, setUsers] = useState([]);
-  const [chosenUser, setChosenUser] = useState("");
+  const [Loading, setLoading] = useState(true);
   useEffect(() => {
     async function getAllUsers() {
       try {
+        setLoading(true);
         const response = await API.get("/socialMedia/displayAllUsers", {
           params: {
             socialMedia: props.socialMedia,
+            cleanDb: props.cleanDb,
           },
         });
+        if (response.status !== 200) {
+          const error = new Error("server error");
+          throw error;
+        }
         console.log("👉 Returned data:", response.data);
         if (response.data.users.length > 0) {
           setUsers(response.data.users);
         } else {
+          props.changeSocialMedia("Choose a social meida");
           window.alert("users not found");
         }
       } catch (e) {
-        window.alert(`😱 Axios request failed: ${e}`);
+        console.log(e);
+        window.location.replace("/");
       }
+      setLoading(false);
     }
     getAllUsers();
-  }, [props.socialMedia]);
-
-  useEffect(() => {
-    if (chosenUser !== "") {
-      props.displayPosts(chosenUser);
-    }
     // eslint-disable-next-line
-  }, [chosenUser]);
+  }, [props.socialMedia]);
 
   const labelForm = css({
     width: "150px",
@@ -45,27 +49,30 @@ function AllUsers(props) {
     display: "flex",
     flexFlow: "column wrap",
     alignItems: "center",
-    marginLeft: "-50px",
   });
-  return (
-    <div>
-      <h2>all crawling results of {props.socialMedia}:</h2>
-      <Container css={containerCss}>
-        <ListGroup>
-          {users.map((user) => (
-            <Button
-              variant="outline-info"
-              css={labelForm}
-              key={user}
-              onClick={() => setChosenUser(user)}
-            >
-              {user}
-            </Button>
-          ))}
-        </ListGroup>
-      </Container>
-    </div>
-  );
+  if (Loading) {
+    return <Loader />;
+  } else {
+    return (
+      <div>
+        <h2>all crawling results of {props.socialMedia}:</h2>
+        <Container css={containerCss}>
+          <ListGroup>
+            {users.map((user) => (
+              <Button
+                variant="outline-info"
+                css={labelForm}
+                key={user}
+                onClick={() => props.displayPosts(user)}
+              >
+                {user}
+              </Button>
+            ))}
+          </ListGroup>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default memo(AllUsers);

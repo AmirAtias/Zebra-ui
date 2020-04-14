@@ -2,11 +2,11 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { useState, useEffect, useContext } from "react";
-import API from "../utils/API";
-import { ThemeContext } from "./AppContext";
+import API from "../../utils/API";
+import { ThemeContext } from "../mainComponents/AppContext";
 import UserPosts from "./UserPosts";
 import { Input, Button, Container } from "semantic-ui-react";
-import Loader from "./Loader";
+import Loader from "../mainComponents/Loader";
 
 const AnalyzePosts = (props) => {
   const [input, setInput] = useState("");
@@ -84,6 +84,7 @@ const AnalyzePosts = (props) => {
     display: "inline-block",
     paddingRight: "5px",
   });
+
   if (error) {
     return (
       <Container>

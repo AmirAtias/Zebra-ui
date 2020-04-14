@@ -2,8 +2,8 @@
 import { jsx, css } from "@emotion/core";
 import { Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import API from "../utils/API";
-import Title from "./Title";
+import API from "../../utils/API";
+import Title from "../mainComponents/Title";
 const CrawlingRequest = () => {
   const { register, handleSubmit } = useForm();
   async function onSubmit(data) {

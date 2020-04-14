@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { useEffect, useState, useContext } from "react";
 import { UserNameContext } from "./AppContext";
-import API from "../utils/API";
+import API from "../../utils/API";
 import { Spinner } from "react-bootstrap";
 const NavBar = () => {
   const [handling, setHandling] = useState(false);
@@ -23,9 +23,13 @@ const NavBar = () => {
   }, []);
 
   async function logout() {
-    const response = await API.get("/users/logout");
-    console.log("logout status:" + response);
-    setUserName("");
+    try {
+      const response = await API.get("/users/logout");
+      console.log("logout status:" + response);
+      setUserName("");
+    } catch (e) {
+      console.log(e);
+    }
   }
   const navCss = css({
     display: "flex",
@@ -56,13 +60,13 @@ const NavBar = () => {
           <Nav>
             {handling && <Spinner animation="border" variant="primary" />}
             <NavDropdown title="User Mangement" id="nav-dropdown">
-              <NavDropdown.Item href="/CrawlingRequest">
+              <NavDropdown.Item href="/crawlingRequest">
                 Crawling Request
               </NavDropdown.Item>
-              <NavDropdown.Item href="/AnalyzePosts">
+              <NavDropdown.Item href="/analyzePosts">
                 Analyze Posts
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
+              <NavDropdown.Item href="/displayReport">
                 Display Report
               </NavDropdown.Item>
               <NavDropdown.Divider />
