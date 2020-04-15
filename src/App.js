@@ -3,6 +3,7 @@ import { jsx, css } from "@emotion/core";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/mainComponents/NavBar";
 import Main from "./components/mainComponents/Main";
+import ErrorBoundary from "./components/mainComponents/ErrorBoundary ";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   ThemeContext,
@@ -28,7 +29,6 @@ function App() {
     MozBackgroundSize: "cover",
     OBackgroundSize: "cover",
     backgroundSize: "cover",
-    //height: "92.5vh",
     width: "100%",
     height: "100%",
     display: "flex",
@@ -37,14 +37,16 @@ function App() {
   });
   return (
     <Router>
-      <UserNameContext.Provider value={[userName, setUserName]}>
-        <NavBar />
-        <ThemeContext.Provider value={[pos, setPosition]}>
-          <div css={BackgorundCss} style={{ position: pos }}>
-            <Main />
-          </div>
-        </ThemeContext.Provider>
-      </UserNameContext.Provider>
+      <ErrorBoundary>
+        <UserNameContext.Provider value={[userName, setUserName]}>
+          <NavBar />
+          <ThemeContext.Provider value={[pos, setPosition]}>
+            <div css={BackgorundCss} style={{ position: pos }}>
+              <Main />
+            </div>
+          </ThemeContext.Provider>
+        </UserNameContext.Provider>
+      </ErrorBoundary>
     </Router>
   );
 }

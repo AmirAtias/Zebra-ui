@@ -1,5 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import sendLog from "../../utils/Logger";
+
 export default function withAuth(ComponentToProtect) {
   // eslint-disable-next-line react/display-name
   return class extends React.Component {
@@ -23,7 +25,7 @@ export default function withAuth(ComponentToProtect) {
           }
         })
         .catch((err) => {
-          console.error(err);
+          sendLog("error", err);
           this.setState({ loading: false, redirect: true });
         });
     }

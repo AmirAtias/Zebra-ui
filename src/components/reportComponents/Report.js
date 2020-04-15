@@ -5,6 +5,8 @@ import API from "../../utils/API";
 import { Container } from "react-bootstrap";
 import Loader from "../mainComponents/Loader";
 import UserPosts from "../crawlingResearch/UserPosts";
+import sendLog from "../../utils/Logger";
+
 const Report = (props) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ const Report = (props) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        sendLog("error", err);
         window.location.replace("/");
       });
     // eslint-disable-next-line

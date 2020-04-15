@@ -5,6 +5,8 @@ import { useEffect, useState, useContext } from "react";
 import { UserNameContext } from "./AppContext";
 import API from "../../utils/API";
 import { Spinner } from "react-bootstrap";
+import sendLog from "../../utils/Logger";
+
 const NavBar = () => {
   const [handling, setHandling] = useState(false);
   const [userName, setUserName] = useContext(UserNameContext);
@@ -28,7 +30,7 @@ const NavBar = () => {
       console.log("logout status:" + response);
       setUserName("");
     } catch (e) {
-      console.log(e);
+      sendLog("error", e);
     }
   }
   const navCss = css({

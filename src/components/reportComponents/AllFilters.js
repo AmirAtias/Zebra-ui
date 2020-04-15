@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import API from "../../utils/API";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import Loader from "../mainComponents/Loader";
+import sendLog from "../../utils/Logger";
+
 const AllFilters = (props) => {
   const [Loading, setLoading] = useState(true);
   const [filters, setFilters] = useState([]);
@@ -25,7 +27,7 @@ const AllFilters = (props) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        sendLog("error", err);
         window.location.replace("/");
       });
     // eslint-disable-next-line

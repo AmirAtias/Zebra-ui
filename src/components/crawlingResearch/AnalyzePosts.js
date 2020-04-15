@@ -7,6 +7,7 @@ import { ThemeContext } from "../mainComponents/AppContext";
 import UserPosts from "./UserPosts";
 import { Input, Button, Container } from "semantic-ui-react";
 import Loader from "../mainComponents/Loader";
+import sendLog from "../../utils/Logger";
 
 const AnalyzePosts = (props) => {
   const [input, setInput] = useState("");
@@ -72,6 +73,7 @@ const AnalyzePosts = (props) => {
 
       window.location.replace("/");
     } catch (e) {
+      sendLog("error", e);
       setError(e.message);
       if (e.message === "Request failed with status code 401") {
         window.location.replace("/login");

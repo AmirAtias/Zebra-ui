@@ -4,6 +4,8 @@ import { useState, useEffect, memo } from "react";
 import API from "../../utils/API";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import Loader from "../mainComponents/Loader";
+import sendLog from "../../utils/Logger";
+
 function AllUsers(props) {
   const [users, setUsers] = useState([]);
   const [Loading, setLoading] = useState(true);
@@ -29,7 +31,7 @@ function AllUsers(props) {
           window.alert("users not found");
         }
       } catch (e) {
-        console.log(e);
+        sendLog("error", e);
         window.location.replace("/");
       }
       setLoading(false);

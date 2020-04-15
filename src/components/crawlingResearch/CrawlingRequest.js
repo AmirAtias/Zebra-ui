@@ -4,6 +4,8 @@ import { Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import API from "../../utils/API";
 import Title from "../mainComponents/Title";
+import sendLog from "../../utils/Logger";
+
 const CrawlingRequest = () => {
   const { register, handleSubmit } = useForm();
   async function onSubmit(data) {
@@ -18,6 +20,7 @@ const CrawlingRequest = () => {
         window.alert("user not found");
       }
     } catch (e) {
+      sendLog("error", e);
       window.alert(`😱 Axios request failed: ${e}`);
     }
   }
@@ -83,7 +86,7 @@ const CrawlingRequest = () => {
           <input
             css={inputCss}
             name="url"
-            placeholder="enter user name in social media"
+            placeholder="enter url of profile in social media"
             ref={register}
           />
         </div>

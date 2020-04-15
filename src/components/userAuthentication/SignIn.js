@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { UserNameContext } from "../mainComponents/AppContext";
+import sendLog from "../../utils/Logger";
 
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +48,7 @@ const SignIn = () => {
         }
       })
       .catch((err) => {
+        sendLog("error", err);
         console.log(err);
         window.location.replace("/");
       });

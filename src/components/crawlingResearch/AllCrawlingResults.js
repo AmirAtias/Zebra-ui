@@ -9,6 +9,8 @@ import API from "../../utils/API";
 import SocialMediaDropdown from "./SocialMediaDropdown";
 import Title from "../mainComponents/Title";
 import AllReports from "../reportComponents/AllReports";
+import sendLog from "../../utils/Logger";
+
 const AllCrawlingResults = (props) => {
   const [SocialMedia, setSocialMedia] = useState("Choose a social meida");
   const [displayUserPosts, setDisplayUserPosts] = useState(false);
@@ -25,7 +27,8 @@ const AllCrawlingResults = (props) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        sendLog("error", err);
+
         window.location.replace("/login");
       });
   });
