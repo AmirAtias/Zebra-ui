@@ -11,7 +11,7 @@ import sendLog from "../../utils/Logger";
 
 const AnalyzePosts = (props) => {
   const [input, setInput] = useState("");
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("no filter");
   const [posts, setPosts] = useState({});
   const [Loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -47,7 +47,7 @@ const AnalyzePosts = (props) => {
           } else setPosition("fixed");
         } else {
           window.alert(`don't  find any post which contain the word ${filter}`);
-          setFilter("");
+          setFilter("no filter");
         }
         setLoading(false);
       } catch (e) {
@@ -124,7 +124,7 @@ const AnalyzePosts = (props) => {
           content="clear filter"
           color="blue"
           onClick={() => {
-            setFilter("");
+            setFilter("no filter");
           }}
         />
         <Button
