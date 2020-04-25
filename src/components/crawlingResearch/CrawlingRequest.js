@@ -11,11 +11,9 @@ const CrawlingRequest = () => {
   async function onSubmit(data) {
     try {
       const response = await API.post("/socialMedia/startCrawling", data);
-      console.log("👉 Returned data:", response);
       if (response.data.validationSucess === "true") {
         window.alert("start to crawling!");
         window.location.replace("/");
-        console.log(data);
       } else {
         window.alert("user not found");
       }

@@ -15,19 +15,17 @@ const NavBar = () => {
     const interval = setInterval(async () => {
       try {
         const response = await API.get("/socialMedia/requestStatus");
-        console.log("👉 Returned data:", response.data);
         setHandling(response.data.handleRequest);
       } catch (e) {
         window.alert(`😱 Axios request failed: ${e}`);
       }
       return () => clearInterval(interval);
-    }, 1500000);
+    }, 2000);
   }, []);
 
   async function logout() {
     try {
-      const response = await API.get("/users/logout");
-      console.log("logout status:" + response);
+      await API.get("/users/logout");
       setUserName("");
     } catch (e) {
       sendLog("error", e);

@@ -40,7 +40,6 @@ const AnalyzePosts = (props) => {
           });
         }
         if (response.data.allPosts.length > 0) {
-          console.log("👉 Returned data:", response.data.allPosts);
           setPosts(response.data.allPosts);
           if (response.data.allPosts.length > 1) {
             setPosition("sticky");

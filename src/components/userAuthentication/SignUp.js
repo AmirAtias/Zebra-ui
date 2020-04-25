@@ -30,7 +30,6 @@ const SignUp = () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log("json", res.data);
           if (res.data.success) {
             setSignUpMsg(res.data.message);
             setIsLoading(false);

@@ -1,12 +1,14 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useContext } from "react";
 import API from "../../utils/API";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import Loader from "../mainComponents/Loader";
 import sendLog from "../../utils/Logger";
-
+import { ThemeContext } from "../mainComponents/AppContext";
 function AllUsers(props) {
+  // eslint-disable-next-line no-unused-vars
+  const [pos, setPosition] = useContext(ThemeContext);
   const [users, setUsers] = useState([]);
   const [Loading, setLoading] = useState(true);
   useEffect(() => {
@@ -23,8 +25,10 @@ function AllUsers(props) {
           const error = new Error("server error");
           throw error;
         }
-        console.log("👉 Returned data:", response.data);
         if (response.data.users.length > 0) {
+          if (response.data.users.length > 3) {
+            setPosition("sticky");
+          } else setPosition("fixed");
           setUsers(response.data.users);
         } else {
           window.alert("users not found");
@@ -64,7 +68,7 @@ function AllUsers(props) {
               <Button
                 variant="outline-info"
                 css={labelForm}
-                key={user}
+                key={user.crawlingTime}
                 onClick={() => props.displayPosts(user)}
               >
                 {user.userName} - date of crawling: {user.crawlingTime}

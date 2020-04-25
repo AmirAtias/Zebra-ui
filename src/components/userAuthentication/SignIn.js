@@ -33,9 +33,7 @@ const SignIn = () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log("json", res.data);
           if (res.data.success) {
-            console.log(res.data.message);
             setUserName(res.data.userName);
             history.push("/");
           } else {
@@ -49,7 +47,6 @@ const SignIn = () => {
       })
       .catch((err) => {
         sendLog("error", err);
-        console.log(err);
         window.location.replace("/");
       });
   }

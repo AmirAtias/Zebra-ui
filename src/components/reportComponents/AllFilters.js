@@ -1,12 +1,14 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import API from "../../utils/API";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import Loader from "../mainComponents/Loader";
 import sendLog from "../../utils/Logger";
-
+import { ThemeContext } from "../mainComponents/AppContext";
 const AllFilters = (props) => {
+  // eslint-disable-next-line no-unused-vars
+  const [pos, setPosition] = useContext(ThemeContext);
   const [Loading, setLoading] = useState(true);
   const [filters, setFilters] = useState([]);
   useEffect(() => {
@@ -19,6 +21,9 @@ const AllFilters = (props) => {
     })
       .then((res) => {
         if (res.status === 200) {
+          if (res.data.filters.length > 6) {
+            setPosition("sticky");
+          } else setPosition("fixed");
           setFilters(res.data.filters);
         } else {
           const error = new Error("server error");
