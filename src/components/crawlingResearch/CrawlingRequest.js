@@ -13,7 +13,7 @@ const CrawlingRequest = () => {
       const response = await API.post("/socialMedia/startCrawling", data);
       console.log("👉 Returned data:", response);
       if (response.data.validationSucess === "true") {
-        window.alert(data.url);
+        window.alert("start to crawling!");
         window.location.replace("/");
         console.log(data);
       } else {
@@ -95,7 +95,7 @@ const CrawlingRequest = () => {
             Social Network:
           </label>
           <select css={comboCss} name="socialMedia" ref={register}>
-            <option value="Facebook">Facebook</option>
+            <option value="humhub">humhub</option>
             <option value="WorldExplorer">WorldExplorer</option>
           </select>
         </div>

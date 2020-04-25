@@ -23,18 +23,18 @@ const AnalyzePosts = (props) => {
       try {
         setLoading(true);
         let response;
-        if (filter === "") {
+        if (filter === "no filter") {
           response = await API.get("/socialMedia/allposts", {
             params: {
               socialMedia: props.socialMedia,
-              userName: props.user,
+              user: props.user,
             },
           });
         } else {
           response = await API.get("/socialMedia/filterPosts", {
             params: {
               socialMedia: props.socialMedia,
-              userName: props.user,
+              user: props.user,
               filter: filter,
             },
           });
@@ -67,7 +67,7 @@ const AnalyzePosts = (props) => {
     try {
       await API.post("/socialMedia/saveResults", {
         socialMedia: props.socialMedia,
-        userName: props.user,
+        user: props.user,
         filter: filter,
       });
 
@@ -79,6 +79,7 @@ const AnalyzePosts = (props) => {
         window.location.replace("/login");
       } else {
         window.alert(`😱 Axios request failed: ${e}`);
+        window.location.replace("/");
       }
     }
   }
@@ -97,7 +98,7 @@ const AnalyzePosts = (props) => {
   return (
     <div>
       <h2>
-        All posts of {props.user} in {props.socialMedia} :
+        All posts of {props.user.userName} in {props.socialMedia} :
       </h2>
       {filter !== "" && (
         <h5 style={{ paddingLeft: "20%" }}>filter by: {filter}</h5>

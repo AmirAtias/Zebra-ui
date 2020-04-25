@@ -27,8 +27,8 @@ function AllUsers(props) {
         if (response.data.users.length > 0) {
           setUsers(response.data.users);
         } else {
-          props.changeSocialMedia("Choose a social meida");
           window.alert("users not found");
+          window.location.replace("/");
         }
       } catch (e) {
         sendLog("error", e);
@@ -67,7 +67,7 @@ function AllUsers(props) {
                 key={user}
                 onClick={() => props.displayPosts(user)}
               >
-                {user}
+                {user.userName} - date of crawling: {user.crawlingTime}
               </Button>
             ))}
           </ListGroup>

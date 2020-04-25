@@ -65,7 +65,6 @@ const AllCrawlingResults = (props) => {
                   socialMedia={SocialMedia}
                   cleanDb={props.cleanDb}
                   displayPosts={displayPosts}
-                  changeSocialMedia={changeSocialMedia}
                 />
               )}
             </Container>

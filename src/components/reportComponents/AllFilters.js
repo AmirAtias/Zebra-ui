@@ -14,7 +14,7 @@ const AllFilters = (props) => {
     API.get("/socialMedia/getAllFilters", {
       params: {
         socialMedia: props.socialMedia,
-        userName: props.user,
+        user: props.user,
       },
     })
       .then((res) => {
@@ -51,7 +51,7 @@ const AllFilters = (props) => {
       <div>
         <h1>
           {" "}
-          all saved results of {props.user} in {props.socialMedia}:
+          all saved results of {props.user.userName} in {props.socialMedia}:
         </h1>
         <Container css={containerCss}>
           <h4>all filters:</h4>

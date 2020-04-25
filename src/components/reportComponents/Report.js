@@ -22,14 +22,14 @@ const Report = (props) => {
     API.get(`/socialMedia/getSavedPosts`, {
       params: {
         socialMedia: props.socialMedia,
-        userName: props.user,
+        user: props.user,
         filter: props.filter,
       },
     })
       .then((res) => {
         if (res.status === 200) {
           console.log(res.data.connections);
-          let retNodes = createNodes(res.data.connections, props.user);
+          let retNodes = createNodes(res.data.connections, props.user.userName);
           let retEdges = createEdges(res.data.connections.length);
           setNodes(retNodes);
           setEdges(retEdges);
@@ -63,7 +63,7 @@ const Report = (props) => {
   return (
     <Container css={containerCss}>
       <Title title={"Final Report"} />
-      <h3>{props.user} social network graph: </h3>
+      <h3>{props.user.userName} social network graph: </h3>
       <NetworkGraph nodes={nodes} edges={edges} />
       <h3 style={{ paddingTop: "2%" }}>
         all saved posts{" "}

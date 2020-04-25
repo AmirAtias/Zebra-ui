@@ -34,7 +34,7 @@ const SocialMediaDropdown = (props) => {
             name="SocialMedia"
             onClick={(e) => props.changeSocialMedia(e.target.value)}
           >
-            <option valus="Choose a social meida" selected>
+            <option valus="Choose a social meida" defaultValue>
               Choose a social meida
             </option>
             <option value="humhub">humhub</option>
