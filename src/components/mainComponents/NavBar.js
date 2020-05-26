@@ -53,7 +53,7 @@ const NavBar = () => {
           <Nav className="mr-auto">
             <div>
               {userName !== "" ? (
-                <div style={{ color: "black" }}> wellcome {userName}</div>
+                <div style={{ color: "black" }}> welcome {userName}</div>
               ) : null}
             </div>
           </Nav>

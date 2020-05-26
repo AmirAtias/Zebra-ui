@@ -97,7 +97,7 @@ const CrawlingRequest = () => {
             <option value="WorldExplorer">WorldExplorer</option>
           </select>
         </div>
-        <Button css={labelForm} type="submit" variant="outline-primary">
+        <Button css={labelForm} type="submit" variant="primary" size="lg">
           Start Crawling
         </Button>{" "}
       </form>

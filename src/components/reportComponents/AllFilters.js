@@ -63,7 +63,7 @@ const AllFilters = (props) => {
           <ListGroup>
             {filters.map((filter) => (
               <Button
-                variant="outline-info"
+                variant="info"
                 css={labelForm}
                 key={filter}
                 onClick={() => props.submitFilter(filter)}

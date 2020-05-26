@@ -66,7 +66,7 @@ function AllUsers(props) {
           <ListGroup>
             {users.map((user) => (
               <Button
-                variant="outline-info"
+                variant="info"
                 css={labelForm}
                 key={user.crawlingTime}
                 onClick={() => props.displayPosts(user)}
