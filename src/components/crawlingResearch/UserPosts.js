@@ -23,7 +23,7 @@ const UserPosts = (props) => {
                   <Comment.Content>
                     <Comment.Author as="a">{post.postHeader} </Comment.Author>
                     <Comment.Metadata>
-                      <div>Today at 5:42PM</div>
+                      <div>{post.postTime}</div>
                     </Comment.Metadata>
                     <Comment.Text>{post.postContent}</Comment.Text>
                   </Comment.Content>
